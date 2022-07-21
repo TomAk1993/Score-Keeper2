@@ -14,7 +14,7 @@ const p2 = {
 const resetbutton = document.querySelector('#reset');
 const select = document.querySelector('#playto');
 
-let winningScore = select;
+let winningScore = 3;
 let isGameOver = false;
 
 function updateScores(player, opponent)
@@ -24,7 +24,7 @@ function updateScores(player, opponent)
     if(player.score === winningScore){
         isGameOver = true;
         player.display.classList.add('has-text-success');
-        opponent.classList.add('has-text-danger');
+        opponent.display.classList.add('has-text-danger');
         player.button.disabled = true;
         opponent.button.disabled = true;
     }
@@ -32,10 +32,6 @@ function updateScores(player, opponent)
     }
     
 }
-
-
-
-
 
 
 p1.button.addEventListener('click', function(){
@@ -46,13 +42,12 @@ p2.button.addEventListener('click', function(){
     updateScores(p2,p1)
 })
 
-resetbutton.addEventListener('click', reset)
-
-select.addEventListener('change', function(){
+select.addEventListener('change', function () {
     winningScore = parseInt(this.value);
     reset();
 })
 
+resetbutton.addEventListener('click', reset)
 
 function reset(){
     isGameOver = false;
